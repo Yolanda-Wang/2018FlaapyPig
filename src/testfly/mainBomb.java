@@ -2,7 +2,9 @@ package testfly;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -19,6 +21,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import testfly.Bomb;
+import testfly.TestBirdFly;
 
 
 import java.io .*;
@@ -48,9 +51,9 @@ import java.net .URL;
     private final static int SUPER_COL = 50;//超难列数  
     private final static int SUPER_BOMB = 350;//超难雷数  
       
-    private static int row = PRIMARY_ROW;//行数  
-    private static int col = PRIMARY_COL;//列数  
-    private static int bombnum = PRIMARY_BOMB;//雷数  
+    private static int row;//行数  
+    private static int col;//列数  
+    private static int bombnum;//雷数  
     private static int blocknum = row * col;//雷区方格数  
     private static int leftblocknum = blocknum - bombnum;//剩余方格数  
     private static int weight = row * 10 + 60;//高度  
@@ -83,85 +86,9 @@ import java.net .URL;
     ImageIcon icon0 = new ImageIcon("Image/0.jpg");  
     ImageIcon icons = new ImageIcon("Image/s.jpg");  
       
-    public mainBomb()//构造方法  
+    public mainBomb(int n)//构造方法  
     {  
-        super("扫雷");  
-          
-        //添加菜单  
-        mBar = new JMenuBar();   
-        gameMenu = new JMenu("游戏菜单");  
-        startItem = new JMenuItem("新游戏");  
-        gradeMenu = new JMenu("级别");  
-        exitItem = new JMenuItem("退出");  
-        primary = new JMenuItem("初级");  
-        medium = new JMenuItem("中级");  
-        senior = new JMenuItem("高级");  
-        ssuper = new JMenuItem("超难");  
-        mBar.add(gameMenu);   
-        gameMenu.add(startItem);  
-        gameMenu.add(gradeMenu);  
-        gameMenu.add(exitItem);  
-        gradeMenu.add(primary);  
-        gradeMenu.add(medium);  
-        gradeMenu.add(senior);  
-        gradeMenu.add(ssuper);  
-        setJMenuBar(mBar);  
-          
-        //添加菜单栏监听器  
-        startItem.addActionListener(new ActionListener()  //新游戏
-        {  
-            public void actionPerformed(ActionEvent e)  
-            {  
-                setBomb();  
-            }  
-        });  
-        primary.addActionListener(new ActionListener()  //初级模式
-        {  
-            public void actionPerformed(ActionEvent e)  
-            {  
-                row = PRIMARY_ROW;  //行
-                col = PRIMARY_COL;  //列
-                bombnum = PRIMARY_BOMB; //布的雷数 
-                setBomb();  
-            }  
-        });  
-        medium.addActionListener(new ActionListener()  //中级模式
-        {  
-            public void actionPerformed(ActionEvent e)  
-            {  
-                row = MEDIUM_ROW;  //行
-                col = MEDIUM_COL;  //列
-                bombnum = MEDIUM_BOMB; //雷数 
-                setBomb();  
-            }  
-        });  
-        senior.addActionListener(new ActionListener()  //高级模式
-        {  
-            public void actionPerformed(ActionEvent e)  
-            {  
-                row = SENIOR_ROW;  //行
-                col = SENIOR_COL;  //列
-                bombnum = SENIOR_BOMB;//雷数  
-                setBomb();  
-            }  
-        });  
-        ssuper.addActionListener(new ActionListener()  //超级难模式
-        {  
-            public void actionPerformed(ActionEvent e)  
-            {  
-                row = SUPER_ROW;  //行
-                col = SUPER_COL;  //列
-                bombnum = SUPER_BOMB; //雷数 
-                setBomb();  
-            }  
-        });  
-        exitItem.addActionListener(new ActionListener()  //退出
-        {  
-            public void actionPerformed(ActionEvent e)  
-            {  
-                System.exit(0);  
-            }  
-        });  
+        super("扫雷");     
           
         Container c = getContentPane();  
         //添加状态面板  
@@ -169,19 +96,48 @@ import java.net .URL;
         noflagbombnum = new JLabel();  
         MenuPanel.add(noflagbombnum);  
         c.add(MenuPanel,BorderLayout.NORTH);  
+        int height = this.getHeight();
+        int width = this.getWidth();
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = kit.getScreenSize();
+        int screenWidth = screenSize.width/2;
+        int screenHeight = screenSize.height/2;
+        c.setLocation(screenWidth-width/2, screenHeight-height/2);
                   
         //添加雷区面板  
         BombPanel = new JPanel();  
         c.add(BombPanel,BorderLayout.CENTER);  
           
-        setBomb();  
+        setBomb(n);  
           
     }  
       
-    public void setBomb()//随机布雷方法  
+    public void setBomb(int n)//随机布雷方法  
     {  
         //初始化雷区  
         BombPanel.removeAll();//移除雷区所有组件  
+        switch (n) {
+        case 1:
+        	this.row = PRIMARY_ROW;
+        	this.col = PRIMARY_COL;
+        	this.bombnum = this.PRIMARY_BOMB;
+        	break;
+        case 2:
+        	this.row = this.MEDIUM_ROW;
+        	this.col = this.MEDIUM_COL;
+        	this.bombnum = this.MEDIUM_BOMB;
+        	break;
+        case 3:
+        	this.row = this.SENIOR_ROW;
+        	this.col = this.SENIOR_COL;
+        	this.bombnum = this.SENIOR_BOMB;
+        	break;
+        case 4:
+        	this.row = this.SUPER_ROW;
+        	this.col = this.SUPER_COL;
+        	this.bombnum = this.SUPER_BOMB;
+        	break;
+        }
         bomb = new Bomb[row][col];  
         BombPanel.setLayout(new GridLayout(row,col));  
         for(int i=0;i<row;i++)  
@@ -200,18 +156,16 @@ import java.net .URL;
                                 if(!ebomb.isBomb)  
                                 {  
                                     open(ebomb);//打开方块  
-                                    isWin();//判断是否结束  
+                                    try {
+										isWin();
+									} catch (Exception e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}//判断是否结束  
                                 }  
                                 else  
                                 {  
-                                    for(int i=0;i<row;i++)  
-                                        for(int j=0;j<col;j++)  
-                                            if(bomb[i][j].isBomb)  
-                                                bomb[i][j].setIcon(iconbomb);  
-                                    ebomb.setIcon(icons);  
-                                    ebomb.setIcon(iconbomb0);  
-                                    isLose();  
-                                    setBomb();  
+                                	
                                 }  
                             }  
                         }  
@@ -240,7 +194,12 @@ import java.net .URL;
                                 else   
                                     ebomb.setIcon(icons);  
                                 noflagbombnum.setText("未标记雷数 ："+leftbombnum);  
-                                isWin();  
+                                try {
+									isWin();
+								} catch (Exception e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}  
                             }  
                         }  
                     }  
@@ -297,23 +256,21 @@ import java.net .URL;
             }  
     }  
       
-    public void isWin()//判断是否挖完了所有雷  
+    public void isWin() throws Exception//判断是否挖完了所有雷  
     {  
         if(leftblocknum == 0)  
         {  
         	playMusic1();
             JOptionPane.showMessageDialog(this,"恭喜你取得胜利!","胜利!",JOptionPane.INFORMATION_MESSAGE);  
-            setBomb();  
-        }  
+//            setBomb();
+            TestBirdFly.gameOver = false;
+            TestBirdFly game = new TestBirdFly();
+            
+            game.repaint();
+        	
+        }
     }  
-      
-    public void isLose()  
-    {  
-        noflagbombnum.setText("未标记雷数 ："+0);  
-        playMusic2();
-        JOptionPane.showMessageDialog(this,"你踩到地雷了，点确定重新开始!","失败!",2);  
-    }  
-      
+    
     public void isNull(Bomb clickbomb)//点击方格为空，翻开周围方格  
     {  
         int x = clickbomb.bx;  

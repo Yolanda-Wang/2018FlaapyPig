@@ -18,7 +18,7 @@ class Column{
 	/** 构造器：初始化数据，n代表第几个柱子 */
 	public Column(int n) throws Exception {
 		image=ImageIO.read(
-		  new File("D:\\1 study\\作业\\java\\flappy_birds\\src\\testfly\\column.png"));
+		  new File("D:\\1 study\\作业\\java\\flappy_birds\\Image\\birdcolumn.png"));
 		width = image.getWidth();
 		height = image.getHeight();
 		gap=144;

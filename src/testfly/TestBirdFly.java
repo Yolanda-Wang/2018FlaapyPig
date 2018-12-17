@@ -16,16 +16,18 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import testfly.Main;
+
 public class TestBirdFly extends JPanel {
 	Bird bird;
 	Column column1, column2; 
 	Ground ground;
 	BufferedImage background;
-	boolean gameOver;
+	public static boolean gameOver;
 	boolean started;
 	BufferedImage gameoverImg;
 	boolean flag = true;
-	public static JFrame frame;
+	public static int count = 0;
 	//分数
 	int score;
 	/** 初始化 BirdGame 的属性变量 */
@@ -37,9 +39,9 @@ public class TestBirdFly extends JPanel {
 		ground = new Ground();
 		gameOver=false;
 		background = ImageIO.read(
-			new File("D:\\1 study\\作业\\java\\flappy_birds\\src\\testfly\\bg.png")); 
+			new File("D:\\1 study\\作业\\java\\flappy_birds\\Image\\birdbg.png")); 
 		gameoverImg= ImageIO.read(
-				new File("D:\\1 study\\作业\\java\\flappy_birds\\src\\testfly\\gameover.png"));
+				new File("D:\\1 study\\作业\\java\\flappy_birds\\Image\\birdgameover.png"));
 	}
 	
 	/** "重写(修改)"paint方法实现绘制 */
@@ -62,10 +64,19 @@ public class TestBirdFly extends JPanel {
 		g.drawImage(ground.image, ground.x, 
 			ground.y, null);
 		if (gameOver){
-	        mainBomb app = new mainBomb(); 
-	        frame.hide();
+			count++;
+	        mainBomb app = new mainBomb(count); 
+	        JOptionPane.showMessageDialog(app, "复活~", "确认复活", JOptionPane.INFORMATION_MESSAGE);
+	        Main.frame.hide();
 	        app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
 	        app.setVisible(true); 
+	        app.setLocationRelativeTo(null);
+	        boolean flag2 = true;
+//	        	if(app.isWin()) {
+//	        		flag2 = false;
+//	        	}
+//	        JOptionPane.showMessageDialog(app, "复活成功", "继续游戏", JOptionPane.INFORMATION_MESSAGE);
+//	        app.hide();
 	        return;
 		}
 		//旋转(rotate)绘图坐标系，是API方法
@@ -109,26 +120,12 @@ public class TestBirdFly extends JPanel {
 				flag = false;
 			}
 			bird.fly();
-			if (bird.x==column1.x||bird.x==column2.x){
+			if (!gameOver&&(bird.x==column1.x||bird.x==column2.x)){
 				score++;
 			}repaint();
 			
 			Thread.sleep(1000/60);
 		}
-	}
-	
-	/** 启动软件的方法 */
-	public static void main(String[] args)
-		throws Exception {
-		frame = new JFrame();
-		TestBirdFly game = new TestBirdFly();
-		frame.add(game);
-		frame.setSize(440, 670);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(
-				JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-		game.action();
 	}
 }
 
