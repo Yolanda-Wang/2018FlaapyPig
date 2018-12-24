@@ -3,6 +3,7 @@ package testfly;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -32,24 +33,24 @@ import java.net .URL;
 @SuppressWarnings({ "serial", "unused" })
  class mainBomb  extends JFrame  {
 	//初级模式
-	private final static int PRIMARY_ROW = 10;//初级行数  
-    private final static int PRIMARY_COL = 10;//初级列数  
-    private final static int PRIMARY_BOMB = 10;//初级雷数  
+	private final static int PRIMARY_ROW = 2;//初级行数  
+    private final static int PRIMARY_COL = 2;//初级列数  
+    private final static int PRIMARY_BOMB = 1;//初级雷数  
      //中级模式 
-    private final static int MEDIUM_ROW = 15;//中级行数  
-    private final static int MEDIUM_COL = 20;//中级列数  
-    private final static int MEDIUM_BOMB = 40;//中级雷数  
+    private final static int MEDIUM_ROW = 3;//中级行数  
+    private final static int MEDIUM_COL = 3;//中级列数  
+    private final static int MEDIUM_BOMB = 2;//中级雷数  
     
     //高级模式  
-    private final static int SENIOR_ROW = 20;//高级行数  
-    private final static int SENIOR_COL = 35;//高级列数  
-    private final static int SENIOR_BOMB = 120;//高级雷数  
+    private final static int SENIOR_ROW = 4;//高级行数  
+    private final static int SENIOR_COL = 4;//高级列数  
+    private final static int SENIOR_BOMB = 3;//高级雷数  
     
     
     //超难模式  
-    private final static int SUPER_ROW = 30;//超难行数  
-    private final static int SUPER_COL = 50;//超难列数  
-    private final static int SUPER_BOMB = 350;//超难雷数  
+    private final static int SUPER_ROW = 5;//超难行数  
+    private final static int SUPER_COL = 5;//超难列数  
+    private final static int SUPER_BOMB = 5;//超难雷数  
       
     private static int row;//行数  
     private static int col;//列数  
@@ -58,6 +59,8 @@ import java.net .URL;
     private static int leftblocknum = blocknum - bombnum;//剩余方格数  
     private static int weight = row * 10 + 60;//高度  
     private static int width = col * 10;//宽度  
+	public static JFrame a;
+	public int win=0;//赢了吗，通过调用iswin的次数.
       
     JMenuBar mBar;//菜单栏  
     JMenu gameMenu,gradeMenu;  
@@ -67,6 +70,7 @@ import java.net .URL;
     JPanel MenuPanel;//状态面板  
     JLabel noflagbombnum;//未标记雷数标签  
     private static int leftbombnum = bombnum;//未标记雷数  
+    private int score;
       
     JPanel BombPanel;//雷区面板  
     Bomb [][]bomb;//雷区方格数组  
@@ -86,10 +90,10 @@ import java.net .URL;
     ImageIcon icon0 = new ImageIcon("Image/0.jpg");  
     ImageIcon icons = new ImageIcon("Image/s.jpg");  
       
-    public mainBomb(int n)//构造方法  
+    public mainBomb(int n,int s)//构造方法  
     {  
         super("扫雷");     
-          
+        score=s;  
         Container c = getContentPane();  
         //添加状态面板  
         MenuPanel = new JPanel();  
@@ -258,17 +262,29 @@ import java.net .URL;
       
     public void isWin() throws Exception//判断是否挖完了所有雷  
     {  
+    	//Frame a;
         if(leftblocknum == 0)  
         {  
+        	
         	playMusic1();
             JOptionPane.showMessageDialog(this,"恭喜你取得胜利!","胜利!",JOptionPane.INFORMATION_MESSAGE);  
-//            setBomb();
-            TestBirdFly.gameOver = false;
-            TestBirdFly game = new TestBirdFly();
+            win++;
             
-            game.repaint();
+			//System.out.println(win);
+
+//            setBomb();
+            //dispose();
+   /*         a = new JFrame();
+            TestBirdFly game1=new TestBirdFly(score);
+            a.add(game1);
+			a.setSize(440, 670);
+			a.setLocationRelativeTo(null);           
+            a.setVisible(true);
+			game1.action();*/
+            
         	
         }
+		
     }  
     
     public void isNull(Bomb clickbomb)//点击方格为空，翻开周围方格  

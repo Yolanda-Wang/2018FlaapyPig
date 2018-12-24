@@ -27,7 +27,7 @@ public class Bird{
     
 	public Bird() throws Exception {
 		image=ImageIO.read(
-			new File("D:\\1 study\\作业\\java\\flappy_birds\\Image\\bird0.png"));
+			new File("I:\\eclipse-workplace\\FF\\Image\\bird0.png"));
 		width = image.getWidth();
 		height = image.getHeight();
 		x = 132;
@@ -46,7 +46,7 @@ public class Bird{
 		for(int i=0; i<8; i++){
 			//i = 0 1 2 3 4 5 6 7 
 			images[i] = ImageIO.read(
-  			  new File("D:\\1 study\\作业\\java\\flappy_birds\\Image\\bird"+i+".png"));
+  			  new File("I:\\eclipse-workplace\\FF\\Image\\bird"+i+".png"));
 		}
 		index = 0;
 	}

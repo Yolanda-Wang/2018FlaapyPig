@@ -20,16 +20,17 @@ import testfly.Main;
 
 public class TestBirdFly extends JPanel {
 	Bird bird;
+//	Bird [] bird=new Bird[5];
 	Column column1, column2; 
 	Ground ground;
 	BufferedImage background;
 	public static boolean gameOver;
-	boolean started;
+	public static boolean started;
 	BufferedImage gameoverImg;
 	boolean flag = true;
 	public static int count = 0;
 	//分数
-	int score;
+	public static int score;
 	/** 初始化 BirdGame 的属性变量 */
 	public TestBirdFly() throws Exception {
 		score = 0;
@@ -39,9 +40,25 @@ public class TestBirdFly extends JPanel {
 		ground = new Ground();
 		gameOver=false;
 		background = ImageIO.read(
-			new File("D:\\1 study\\作业\\java\\flappy_birds\\Image\\birdbg.png")); 
+			new File("I:\\eclipse-workplace\\FF\\Image\\birdbg.png")); 
 		gameoverImg= ImageIO.read(
-				new File("D:\\1 study\\作业\\java\\flappy_birds\\Image\\birdgameover.png"));
+				new File("I:\\eclipse-workplace\\FF\\Image\\birdgameover.png"));
+	}
+	
+	public  TestBirdFly(int s) throws Exception {
+		score=s;
+		bird = new Bird();
+		column1 = new Column(1);
+		column2 = new Column(2);
+		ground = new Ground();
+		gameOver=false;
+		background = ImageIO.read(
+			new File("I:\\eclipse-workplace\\FF\\Image\\birdbg.png")); 
+		gameoverImg= ImageIO.read(
+				new File("I:\\eclipse-workplace\\FF\\Image\\birdgameover.png"));
+		
+		
+		
 	}
 	
 	/** "重写(修改)"paint方法实现绘制 */
@@ -58,23 +75,36 @@ public class TestBirdFly extends JPanel {
 				Font.BOLD, 40);
 		g.setFont(f);
 		g.drawString(""+score, 40, 60);
-		g.setColor(Color.WHITE);
+		g.setColor(Color.red);
 		g.drawString(""+score, 40-3, 60-3);
 		
 		g.drawImage(ground.image, ground.x, 
 			ground.y, null);
 		if (gameOver){
 			count++;
-	        mainBomb app = new mainBomb(count); 
+			/*if(count==1)
+			{
+				Main.frame.dispose();
+			}
+			else
+			{
+				mainBomb.a.dispose();
+			}
+	        mainBomb app = new mainBomb(count,score); 
 	        JOptionPane.showMessageDialog(app, "复活~", "确认复活", JOptionPane.INFORMATION_MESSAGE);
 	        Main.frame.hide();
 	        app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
-	        app.setVisible(true); 
-	        app.setLocationRelativeTo(null);
-	        boolean flag2 = true;
-//	        	if(app.isWin()) {
-//	        		flag2 = false;
-//	        	}
+	        app.setVisible(true);
+	        app.setLocationRelativeTo(null);*/
+	 //       boolean flag2 = true;
+	  //      	try {
+	//				if(app.isWin()) {
+						
+//					}
+//				} catch (Exception e) {
+					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
 //	        JOptionPane.showMessageDialog(app, "复活成功", "继续游戏", JOptionPane.INFORMATION_MESSAGE);
 //	        app.hide();
 	        return;
@@ -101,16 +131,19 @@ public class TestBirdFly extends JPanel {
 		};
 		//将l挂接到当前的面板（game）上
 		addMouseListener(l);
-		
 		while(flag){
 			
 			
 			//计分逻辑
 			if(!gameOver||started){
+				//System.out.println("mmmm1");
+
 				ground.step();
 				column1.step();
 				column2.step();
 				bird.step();
+				//System.out.println("mmmm2");
+
 			}
 			bird.fly();
 			ground.step();
@@ -128,6 +161,7 @@ public class TestBirdFly extends JPanel {
 		}
 	}
 }
+
 
 
 
