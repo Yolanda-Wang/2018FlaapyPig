@@ -169,7 +169,13 @@ import java.net .URL;
                                 }  
                                 else  
                                 {  
-                                	
+                                	for(int i=0;i<row;i++)  
+                                        for(int j=0;j<col;j++)  
+                                            if(bomb[i][j].isBomb)  
+                                                bomb[i][j].setIcon(iconbomb);  
+                                    ebomb.setIcon(icons);  
+                                    ebomb.setIcon(iconbomb0);  
+                                    JOptionPane.showMessageDialog(ebomb, "失败~（这里换成gameover的图片，并显示分数）", "复活失败！", JOptionPane.INFORMATION_MESSAGE);
                                 }  
                             }  
                         }  

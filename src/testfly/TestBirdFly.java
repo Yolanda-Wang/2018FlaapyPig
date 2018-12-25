@@ -40,9 +40,9 @@ public class TestBirdFly extends JPanel {
 		ground = new Ground();
 		gameOver=false;
 		background = ImageIO.read(
-			new File("I:\\eclipse-workplace\\FF\\Image\\birdbg.png")); 
+			new File("D:\\1 study\\作业\\java\\flappy_birds\\Image\\birdbg.png")); 
 		gameoverImg= ImageIO.read(
-				new File("I:\\eclipse-workplace\\FF\\Image\\birdgameover.png"));
+				new File("D:\\1 study\\作业\\java\\flappy_birds\\Image\\birdgameover.png"));
 	}
 	
 	public  TestBirdFly(int s) throws Exception {

@@ -13,7 +13,7 @@ public class Ground{
 	int height;
 	public Ground() throws Exception {
 		image = ImageIO.read(
-		  new File("I:\\eclipse-workplace\\FF\\Image\\birdground.png"));
+		  new File("D:\\1 study\\ื๗าต\\java\\flappy_birds\\Image\\birdground.png"));
 		width = image.getWidth();
 		height = image.getHeight();
 		x = 0;
