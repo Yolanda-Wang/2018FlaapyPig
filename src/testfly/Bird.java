@@ -21,7 +21,8 @@ public class Bird{
     double alpha;// 是鸟的倾角 弧度单位
     //在Bird类中定义
     //定义一组（数组）图片，是鸟的动画帧
-    BufferedImage[] images;
+    //BufferedImage[] images;
+    BufferedImage image1;
     //是动画帧数组元素的下标位置
     int index;
     
@@ -35,25 +36,28 @@ public class Bird{
 		size = 10;
 		g = 1;
 		v0 = 10;
-		t = 0.25;
+		t = 0.4;
 		speed = v0;
 		s = 0;
 		alpha=0;
 		//创建数组,创建8个元素的数组
 		//是8个空位置，没有图片对象，
 		//8个位置的序号: 0 1 2 3 4 5 6 7
-		images = new BufferedImage[8];
-		for(int i=0; i<8; i++){
-			//i = 0 1 2 3 4 5 6 7 
-			images[i] = ImageIO.read(
-  			  new File("I:\\eclipse-workplace\\FF\\Image\\bird"+i+".png"));
-		}
-		index = 0;
+		//images = new BufferedImage[8];
+//		for(int i=0; i<8; i++){
+//			//i = 0 1 2 3 4 5 6 7 
+//			images[i] = ImageIO.read(
+//  			  new File("I:\\eclipse-workplace\\FF\\Image\\bird"+i+".png"));
+//		}
+//		index = 0;
+		image1 = ImageIO.read(
+			  new File("I:\\eclipse-workplace\\FF\\Image\\bird0.png"));
 	}
 	//在Bird中添加飞翔(fly)的代码
 	public void fly(){
 		index++;
-		image = images[(index/12) % 8];
+		image=image1;
+		//image = images[(index/12) % 8];
 	}
 	//在Bird中添加鸟的移动方法
 	public void step(){

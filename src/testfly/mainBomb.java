@@ -1,6 +1,7 @@
 package testfly;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Frame;
@@ -33,24 +34,24 @@ import java.net .URL;
 @SuppressWarnings({ "serial", "unused" })
  class mainBomb  extends JFrame  {
 	//初级模式
-	private final static int PRIMARY_ROW = 2;//初级行数  
-    private final static int PRIMARY_COL = 2;//初级列数  
-    private final static int PRIMARY_BOMB = 1;//初级雷数  
+	private final static int PRIMARY_ROW = 5;//初级行数  
+    private final static int PRIMARY_COL = 5;//初级列数  
+    private final static int PRIMARY_BOMB = 4;//初级雷数  
      //中级模式 
-    private final static int MEDIUM_ROW = 3;//中级行数  
-    private final static int MEDIUM_COL = 3;//中级列数  
-    private final static int MEDIUM_BOMB = 2;//中级雷数  
+    private final static int MEDIUM_ROW = 9;//中级行数  
+    private final static int MEDIUM_COL = 9;//中级列数  
+    private final static int MEDIUM_BOMB = 10;//中级雷数  
     
     //高级模式  
-    private final static int SENIOR_ROW = 4;//高级行数  
-    private final static int SENIOR_COL = 4;//高级列数  
-    private final static int SENIOR_BOMB = 3;//高级雷数  
+    private final static int SENIOR_ROW = 16;//高级行数  
+    private final static int SENIOR_COL = 16;//高级列数  
+    private final static int SENIOR_BOMB = 40;//高级雷数  
     
     
     //超难模式  
-    private final static int SUPER_ROW = 5;//超难行数  
-    private final static int SUPER_COL = 5;//超难列数  
-    private final static int SUPER_BOMB = 5;//超难雷数  
+    private final static int SUPER_ROW = 16;//超难行数  
+    private final static int SUPER_COL = 30;//超难列数  
+    private final static int SUPER_BOMB = 99;//超难雷数  
       
     private static int row;//行数  
     private static int col;//列数  
@@ -70,7 +71,7 @@ import java.net .URL;
     JPanel MenuPanel;//状态面板  
     JLabel noflagbombnum;//未标记雷数标签  
     private static int leftbombnum = bombnum;//未标记雷数  
-    private int score;
+    public int score;
       
     JPanel BombPanel;//雷区面板  
     Bomb [][]bomb;//雷区方格数组  
@@ -169,7 +170,26 @@ import java.net .URL;
                                 }  
                                 else  
                                 {  
-                                	
+                                	for(int i=0;i<row;i++)  
+                                        for(int j=0;j<col;j++)  
+                                            if(bomb[i][j].isBomb)  
+                                                bomb[i][j].setIcon(iconbomb);  
+                                    ebomb.setIcon(icons);  
+                                    ebomb.setIcon(iconbomb0);  
+                                    try {
+										GG();
+									} catch (IOException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}
+                                    JOptionPane.showMessageDialog(ebomb, "失败~", "复活失败！", JOptionPane.INFORMATION_MESSAGE);
+//                                    System.out.println("this location");
+//
+//                                    a=new JFrame();
+//                                    gameover END = null;
+//									END.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+//                        	        END.setVisible(true);
+//                        	        END.setLocationRelativeTo(null);
                                 }  
                             }  
                         }  
@@ -206,7 +226,18 @@ import java.net .URL;
 								}  
                             }  
                         }  
-                    }  
+                    }
+
+					private void GG() throws IOException {
+						a=new JFrame();
+                      gameover END = new gameover(score);
+          			END.setSize(440, 670);
+
+						END.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+          	        END.setVisible(true);
+          	        END.setLocationRelativeTo(null);// TODO Auto-generated method stub
+						
+					}  
                 });  
                 BombPanel.add(bomb[i][j]);  
             }  
