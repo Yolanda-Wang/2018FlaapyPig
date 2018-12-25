@@ -92,7 +92,7 @@ public boolean hit (Ground ground){
 public boolean hit(Column column){
 	//先检查是否在柱子的范围以内
    if  (x>column.x-column.width/2-size/2&&x<column.x+column.width/2+size/2){
-	   if(y>column.y-column.gap/2+size/2&&y<column.y+column.gap/2-size/2){
+	   if(y<column.y+column.gap/2-size/2){
 	   return false;
 	   
   
