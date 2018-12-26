@@ -40,12 +40,6 @@ public class Main {
 	        app[0].setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
 	        app[0].setVisible(true);
 	        app[0].setLocationRelativeTo(null);
-//	        try { //可以装作是给扫雷加时间限制
-//	            Thread.sleep(10000);
-//	        } catch (InterruptedException e) {
-//	            e.printStackTrace(); 
-//	        }
-	        //扫雷没有做完就继续执行了
 
 			int win=app[0].win;
 			System.out.println(win);
@@ -53,44 +47,7 @@ public class Main {
 			while(win==0) {			
 				win=app[0].win;
 				System.out.println(app[0].win);}
-			
-			
-//			while(win!=0&&count<=5)
-//		   {
-//				frame1=new JFrame();
-//				int a=count-1;
-//				game[count]=new TestBirdFly(game[a].score);
-//				frame1.add(game[count]);
-//				frame1.setSize(440, 670);
-//				frame1.setLocationRelativeTo(null);
-//				app[a].hide();
-//				frame1.setDefaultCloseOperation(
-//						JFrame.EXIT_ON_CLOSE);
-//				frame1.setVisible(true);
-//				System.out.println("fly");
-//				game[count].action();
-//				System.out.println(count);
-//
-//				System.out.println("flyok");
-//
-//				//frame1.dispose();
-//				count++;
-//
-//				app[count] = new mainBomb(count,game[a].score); 
-//		        JOptionPane.showMessageDialog(app[count], "复活~", "确认复活", JOptionPane.INFORMATION_MESSAGE);
-//		        frame1.hide();
-//		        app[count].setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
-//		        app[count].setVisible(true);
-//		        app[count].setLocationRelativeTo(null);
-////		        try {
-////		            Thread.sleep(10000);
-////		        } catch (InterruptedException e) {
-////		            e.printStackTrace(); 
-////		        }
-//		       // app[a].hide();
-//		        
-//		   }
-//			
+
 			frame1=new JFrame();
 			int a=count-1;
 			game[count]=new TestBirdFly(game[a].score);
@@ -107,7 +64,6 @@ public class Main {
 
 			System.out.println("flyok");
 
-			//frame1.dispose();
 			count++;
 
 			app[count] = new mainBomb(count,game[a].score); 
@@ -122,7 +78,6 @@ public class Main {
 				win=app[count].win;
 				System.out.println(app[count].win);}
 	        frame2=new JFrame();
-			//int a=count-1;
 			game[count]=new TestBirdFly(game[a].score);
 			frame2.add(game[count]);
 			frame2.setSize(440, 670);
@@ -137,7 +92,6 @@ public class Main {
 
 			System.out.println("flyok");
 
-			//frame2.dispose();
 			count++;
 
 			app[count] = new mainBomb(count,game[a].score); 
@@ -152,7 +106,6 @@ public class Main {
 				System.out.println(app[count].win);}
 	        
 	        frame3=new JFrame();
-			//int a=count-1;
 			game[count]=new TestBirdFly(game[a].score);
 			frame3.add(game[count]);
 			frame3.setSize(440, 670);
@@ -167,7 +120,6 @@ public class Main {
 
 			System.out.println("flyok");
 
-			//frame3.dispose();
 			count++;
 
 			app[count] = new mainBomb(count,game[a].score); 
@@ -182,7 +134,6 @@ public class Main {
 				System.out.println(app[count].win);}
 
 	        frame4=new JFrame();
-			//int a=count-1;
 			game[count]=new TestBirdFly(game[a].score);
 			frame4.add(game[count]);
 			frame4.setSize(440, 670);
@@ -197,11 +148,6 @@ public class Main {
 
 			System.out.println("flyok");
 
-			//frame4.dispose();
-			count++;
-
-
-	        
-			
+			count++;	     		
 	}
 }

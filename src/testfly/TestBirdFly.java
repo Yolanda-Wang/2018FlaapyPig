@@ -56,9 +56,6 @@ public class TestBirdFly extends JPanel {
 			new File("I:\\eclipse-workplace\\FF\\Image\\birdbg.png")); 
 		gameoverImg= ImageIO.read(
 				new File("I:\\eclipse-workplace\\FF\\Image\\birdgameover.png"));
-		
-		
-		
 	}
 	
 	/** "重写(修改)"paint方法实现绘制 */
@@ -82,31 +79,6 @@ public class TestBirdFly extends JPanel {
 			ground.y, null);
 		if (gameOver){
 			count++;
-			/*if(count==1)
-			{
-				Main.frame.dispose();
-			}
-			else
-			{
-				mainBomb.a.dispose();
-			}
-	        mainBomb app = new mainBomb(count,score); 
-	        JOptionPane.showMessageDialog(app, "复活~", "确认复活", JOptionPane.INFORMATION_MESSAGE);
-	        Main.frame.hide();
-	        app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
-	        app.setVisible(true);
-	        app.setLocationRelativeTo(null);*/
-	 //       boolean flag2 = true;
-	  //      	try {
-	//				if(app.isWin()) {
-						
-//					}
-//				} catch (Exception e) {
-					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//	        JOptionPane.showMessageDialog(app, "复活成功", "继续游戏", JOptionPane.INFORMATION_MESSAGE);
-//	        app.hide();
 	        return;
 		}
 		//旋转(rotate)绘图坐标系，是API方法
@@ -126,24 +98,17 @@ public class TestBirdFly extends JPanel {
 				//鸟向上飞扬
 				started=true;
 				bird.flappy();
-				
 			}
 		};
 		//将l挂接到当前的面板（game）上
 		addMouseListener(l);
 		while(flag){
-			
-			
 			//计分逻辑
 			if(!gameOver||started){
-				//System.out.println("mmmm1");
-
 				ground.step();
 				column1.step();
 				column2.step();
 				bird.step();
-				//System.out.println("mmmm2");
-
 			}
 			bird.fly();
 			ground.step();
@@ -155,8 +120,8 @@ public class TestBirdFly extends JPanel {
 			bird.fly();
 			if (!gameOver&&(bird.x==column1.x||bird.x==column2.x)){
 				score++;
-			}repaint();
-			
+			}
+			repaint();
 			Thread.sleep(1000/60);
 		}
 	}

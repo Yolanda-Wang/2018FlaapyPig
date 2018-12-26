@@ -40,16 +40,6 @@ public class Bird{
 		speed = v0;
 		s = 0;
 		alpha=0;
-		//创建数组,创建8个元素的数组
-		//是8个空位置，没有图片对象，
-		//8个位置的序号: 0 1 2 3 4 5 6 7
-		//images = new BufferedImage[8];
-//		for(int i=0; i<8; i++){
-//			//i = 0 1 2 3 4 5 6 7 
-//			images[i] = ImageIO.read(
-//  			  new File("I:\\eclipse-workplace\\FF\\Image\\bird"+i+".png"));
-//		}
-//		index = 0;
 		image1 = ImageIO.read(
 			  new File("I:\\eclipse-workplace\\FF\\Image\\bird0.png"));
 	}
@@ -57,7 +47,6 @@ public class Bird{
 	public void fly(){
 		index++;
 		image=image1;
-		//image = images[(index/12) % 8];
 	}
 	//在Bird中添加鸟的移动方法
 	public void step(){
@@ -66,10 +55,6 @@ public class Bird{
 		y = y-(int)s;//计算鸟的坐标位置
 		double v = v0 - g*t;//计算下次的速度
 		speed = v;
-//		if(y>=500){//如果到达地面，就重新抛起
-//			y = 280;
-//			speed = 35;
-//		}
 		//调用Java API提供的反正切函数，计算倾角
 		alpha = Math.atan(s/8);
 	}
@@ -98,12 +83,8 @@ public boolean hit(Column column){
    if  (x>column.x-column.width/2-size/2&&x<column.x+column.width/2+size/2){
 	   if(y<column.y+column.gap/2-size/2){
 	   return false;
-	   
-  
-   
 	   		}
 	   return true;
-	
    		}
    return false;
 	}

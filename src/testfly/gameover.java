@@ -32,7 +32,5 @@ public class gameover extends JFrame{
 		g.drawString(" "+score, 190, 285);
 		g.setColor(Color.red);
 		g.drawString(" "+score, 190-3, 285-3);
-		
 	}
-
 }

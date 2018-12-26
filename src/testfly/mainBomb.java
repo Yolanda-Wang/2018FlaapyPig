@@ -183,13 +183,6 @@ import java.net .URL;
 										e1.printStackTrace();
 									}
                                     JOptionPane.showMessageDialog(ebomb, "失败~", "复活失败！", JOptionPane.INFORMATION_MESSAGE);
-//                                    System.out.println("this location");
-//
-//                                    a=new JFrame();
-//                                    gameover END = null;
-//									END.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
-//                        	        END.setVisible(true);
-//                        	        END.setLocationRelativeTo(null);
                                 }  
                             }  
                         }  
@@ -233,7 +226,7 @@ import java.net .URL;
                       gameover END = new gameover(score);
           			END.setSize(440, 670);
 
-						END.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+					END.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
           	        END.setVisible(true);
           	        END.setLocationRelativeTo(null);// TODO Auto-generated method stub
 						
@@ -293,27 +286,10 @@ import java.net .URL;
       
     public void isWin() throws Exception//判断是否挖完了所有雷  
     {  
-    	//Frame a;
         if(leftblocknum == 0)  
         {  
-        	
-        	playMusic1();
             JOptionPane.showMessageDialog(this,"恭喜你取得胜利!","胜利!",JOptionPane.INFORMATION_MESSAGE);  
             win++;
-            
-			//System.out.println(win);
-
-//            setBomb();
-            //dispose();
-   /*         a = new JFrame();
-            TestBirdFly game1=new TestBirdFly(score);
-            a.add(game1);
-			a.setSize(440, 670);
-			a.setLocationRelativeTo(null);           
-            a.setVisible(true);
-			game1.action();*/
-            
-        	
         }
 		
     }  
@@ -358,31 +334,4 @@ import java.net .URL;
             isNull(clickbomb);  
         }  
     }  
-    public static void playMusic1() {
-		try {
-			URL cb;
-			File f = new File("1.wav");
-			cb = f.toURL();
-			java.applet.AudioClip aau;
-			aau = Applet.newAudioClip(cb);
-			aau.play();
-			aau.loop();
-		}catch(MalformedURLException e) {
-			e.printStackTrace();
-		}
-	}
-    public static void playMusic2() {
-		try {
-			URL cb;
-			File f = new File("2.wav");
-			cb = f.toURL();
-			java.applet.AudioClip aau;
-			aau = Applet.newAudioClip(cb);
-			aau.play();
-			aau.loop();
-		}catch(MalformedURLException e) {
-			e.printStackTrace();
-		}
-	}
-
 }
